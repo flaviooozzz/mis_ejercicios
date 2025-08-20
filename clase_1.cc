@@ -1,24 +1,59 @@
 #include <iostream>
-#include <cmath>
-/*
-declaracion de varaibles constantes
-afuera de toda funcion, 
-const double kpi = 3.14
-osea primero
-const - tipo de dato - k al inicio y luego el nombre de la varaible en snakecase - valor de la variable
-*/
-float CalcularAreaCirculo(int RadioCirculo);
+#include <string>
+#include <cstdlib>
+#include <ctime>
+
+std::string GenerarCupon(std::string parametro);
+void AsignarPremio(std::string identificador_cupon);
+std::string SolicitarDatos();
 
 int main(){
-    float RadioCirculo;
-    std::cout<<"Ingrese el radio de su circulo: "<<std::endl;
-    std::cin>>RadioCirculo;
-    std::cout<<"El area es: "<<round(CalcularAreaCirculo(RadioCirculo));
+    srand(time(0));  
+    std::cout<<"Cuantos cupones desea generar: ";
+    int cantidad_de_cupones;
+    std::cin>>cantidad_de_cupones;
+    std::string cupones[cantidad_de_cupones];
+    for (int i=0;i<cantidad_de_cupones;i++){
+    
+        std::string prefijo = SolicitarDatos();
+        cupones[i] = GenerarCupon(prefijo);
+        std::cout << "Su cupon es: " << cupones[i]<< std::endl;
 
+        AsignarPremio(cupones[i]);
+    }
+    std::cout<<"Todos sus cupones son: "<<std::endl;
+    for (int i=0;i<cantidad_de_cupones;i++){
+        std::cout << "Cupon "<<i+1<<": " << cupones[i]<< std::endl;
+    }
     return 0;
 }
 
-float CalcularAreaCirculo(int RadioCirculo){
-    float AreaCalculadaCirculo=RadioCirculo*RadioCirculo*M_PI;
-    return AreaCalculadaCirculo;
+std::string GenerarCupon(std::string parametro){
+    int numero_aleatorio = rand() % 900 + 100; 
+    std::string conversion = std::to_string(numero_aleatorio);
+    return parametro + conversion;
+}
+
+void AsignarPremio(std::string identificador_cupon){
+    std::string valor_cupon = identificador_cupon.substr(3,3);
+    int cupon_numeros = std::stoi(valor_cupon);
+
+    if(cupon_numeros % 2 == 0){
+        std::cout << "Tiene premio";
+    }
+    else{
+        std::cout << "NO tiene premio";
+    }
+}
+
+std::string SolicitarDatos(){
+    std::string prefijo;
+    do {
+        std::cout << "\nIngrese las 3 letras de su cupon: ";
+        std::cin >> prefijo;
+        if (prefijo.length() != 3){
+            std::cout << "Entrada invalida. Debe ingresar exactamente 3 letras.\n";
+        }
+    } while (prefijo.length() != 3);
+    return prefijo;
 }
