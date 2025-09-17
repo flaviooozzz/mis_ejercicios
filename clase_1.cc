@@ -10,8 +10,6 @@ struct InformacionCupon{
     std::string nombre_persona;
     //std::string cupones_generados[3][3];
     std::vector<std::pair<std::string,std::string>>cupones_generadors;
-    
-
 }cupon;
 
 std::string GenerarCupon(std::string parametro);
