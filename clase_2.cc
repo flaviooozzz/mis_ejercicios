@@ -48,9 +48,9 @@ int main()
  
     return 0;
 }
-
+//funcion de tipo struct para pedir los datos
 struct InformacionCupon SolicitarDatosGenerales(){
-
+    //se declara una variable de tipo struct para llenarla con los datos
     struct InformacionCupon cupon;
     std::cout<<"Ingresa el nombre de la persona: ";
     std::cin>>cupon.inf_persona.nombre_persona;
@@ -65,6 +65,7 @@ struct InformacionCupon SolicitarDatosGenerales(){
         cupon.cupon_premio.push_back({cupon_generado, premio});
        
     }
+    //se regresa la estructura llena al main
     return cupon;
 }
 
