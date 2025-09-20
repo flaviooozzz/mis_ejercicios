@@ -2,12 +2,13 @@
 #include <string>
 
 struct Persona{
+    //variables y archivos con snake case
     std::string nombre;
     float altura;
     float peso;
     float imc;
 };
-
+//funciones y structs con camel case
 struct Persona solicitarDatos();
 void calcularIMC(struct Persona *ptr);
 
@@ -37,3 +38,4 @@ void calcularIMC(struct Persona *ptr){
     ptr->imc = (ptr->peso)/(ptr->altura*ptr->altura);
     std::cout<<"(funcion) Imc: "<<ptr->imc;
 }
+//recordar formatear el documento antes de entregar
